@@ -5,4 +5,27 @@ spring:
     username: markmedbuser
     password: markmedbuser
 
-  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+  servlet:
+    multipart:
+      max-request-size: 30MB
+      max-file-size: 10MB
+
+logging:
+  level:
+    org:
+      springframework:
+        security:
+          web: trace
+
+com:
+  rootable:
+    upload:
+      path: upload # ??? ??? ??? ????
