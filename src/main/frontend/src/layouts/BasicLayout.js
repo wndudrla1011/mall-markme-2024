@@ -7,7 +7,7 @@ function BasicLayout({ children }) {
       {/* 메뉴 */}
       <BasicMenu />
 
-      {/* List */}
+      {/* children */}
       <div>{children}</div>
     </>
   );

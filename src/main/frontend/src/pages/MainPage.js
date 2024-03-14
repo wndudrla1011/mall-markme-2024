@@ -1,11 +1,18 @@
 import React from "react";
-import MainLayout from "../layouts/MainLayout";
+import Carousel from "../components/carousel/Carousel";
+import carousel from "../css/carousel.module.css";
+import BasicLayout from "./../layouts/BasicLayout";
 
 function MainPage() {
   return (
-    <MainLayout>
-      <div className="text-3xl">Main Page</div>
-    </MainLayout>
+    <BasicLayout>
+      {/* Carousel */}
+      <div className={carousel.index}>
+        <Carousel />
+      </div>
+
+      {/* Item List */}
+    </BasicLayout>
   );
 }
 
