@@ -1,0 +1,109 @@
+.index {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #faede1;
+}
+
+.carousel {
+  overflow: hidden;
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 10rem;
+}
+
+.inner {
+  white-space: nowrap;
+  transition: transform 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.carousel__item {
+  display: inline-flex;
+  align-items: center;
+  height: 45rem;
+  border-radius: 5%;
+  background-color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 0 40px 0 40px;
+  text-align: center;
+}
+
+.carousel__img {
+  width: 700px;
+  padding: 0 30px 0 30px;
+  margin-right: 2rem;
+}
+
+.carousel__item__text {
+  white-space: normal;
+}
+
+.carousel__link {
+  display: inline-block;
+  position: relative;
+  bottom: -50px;
+  padding: 8px 15px;
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.896);
+  color: #faede1;
+}
+
+.carousel__buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.button__arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.button__arrow span {
+  font-weight: 800;
+}
+
+.indicators {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.indicator__buttons {
+  border: none;
+  cursor: pointer;
+}
+
+.indicators > button {
+  margin: 5px;
+  background: none;
+}
+
+.indicator__symbol {
+  color: rgb(63, 63, 63);
+}
+
+.indicator__symbol__active {
+  color: rgb(126, 173, 245);
+}
+
+@media screen and (max-width: 2000px) {
+  .carousel__img__text p {
+    display: none;
+  }
+
+  .carousel__link {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+  }
+}
