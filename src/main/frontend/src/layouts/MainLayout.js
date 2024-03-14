@@ -14,7 +14,7 @@ function MainLayout({ children }) {
       </div>
 
       {/* Item List */}
-      <div>{children}</div>
+      <div className="bg-green-700">{children}Iten List</div>
     </>
   );
 }
