@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 
 const MemberList = lazy(() => import("../pages/member/ListPage"));
 const Login = lazy(() => import("../pages/member/LoginPage"));
+const MemberAdd = lazy(() => import("../pages/member/AddPage"));
 
 const memberRouter = () => {
   return [
@@ -18,6 +19,14 @@ const memberRouter = () => {
     {
       path: "",
       element: <Navigate replace={true} to={"list"} />,
+    },
+    {
+      path: "add",
+      element: (
+        <Suspense fallback={<Loading />}>
+          <MemberAdd />
+        </Suspense>
+      ),
     },
     {
       path: "login",
