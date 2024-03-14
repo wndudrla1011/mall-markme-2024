@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 const MemberList = lazy(() => import("../pages/member/ListPage"));
 const Login = lazy(() => import("../pages/member/LoginPage"));
 const MemberAdd = lazy(() => import("../pages/member/AddPage"));
+const MemberRead = lazy(() => import("../pages/member/ReadPage"));
 
 const memberRouter = () => {
   return [
@@ -33,6 +34,14 @@ const memberRouter = () => {
       element: (
         <Suspense fallback={<Loading />}>
           <Login />
+        </Suspense>
+      ),
+    },
+    {
+      path: "read/:memberId",
+      element: (
+        <Suspense fallback={<Loading />}>
+          <MemberRead />
         </Suspense>
       ),
     },
