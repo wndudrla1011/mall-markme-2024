@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Loading from "../pages/Loading";
 import cartRouter from "./cartRouter";
 import orderRouter from "./orderRouter";
+import memberRouter from "./memberRouter";
 
 const Main = lazy(() => {
   return Promise.all([
@@ -13,6 +14,7 @@ const Main = lazy(() => {
 
 const CartIndex = lazy(() => import("../pages/cart/IndexPage"));
 const OrderIndex = lazy(() => import("../pages/order/IndexPage"));
+const MemberIndex = lazy(() => import("../pages/member/IndexPage"));
 
 const root = createBrowserRouter([
   {
@@ -40,6 +42,15 @@ const root = createBrowserRouter([
       </Suspense>
     ),
     children: orderRouter(),
+  },
+  {
+    path: "member",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <MemberIndex />
+      </Suspense>
+    ),
+    children: memberRouter(),
   },
 ]);
 
