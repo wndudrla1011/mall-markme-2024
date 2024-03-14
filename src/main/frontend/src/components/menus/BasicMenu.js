@@ -21,7 +21,10 @@ function BasicMenu() {
           <button className={styles.dropdownBtn}>
             MY
             <li className={styles.dropdown__content}>
-              <Link className={styles.dropdown__content__link} to={"/my/info"}>
+              <Link
+                className={styles.dropdown__content__link}
+                to={"/member/read/10"}
+              >
                 INFO
               </Link>
               <Link className={styles.dropdown__content__link} to={"/my/posts"}>
