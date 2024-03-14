@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import Loading from "../pages/Loading";
+import { Navigate } from "react-router-dom";
 
 const CartList = lazy(() => import("../pages/cart/ListPage"));
 
@@ -12,6 +13,10 @@ const cartRouter = () => {
           <CartList />
         </Suspense>
       ),
+    },
+    {
+      path: "",
+      element: <Navigate replace={true} to={"list"} />,
     },
   ];
 };
