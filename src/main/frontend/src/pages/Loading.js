@@ -1,4 +1,4 @@
-import styles from "../css/common/loading.module.css";
+import styles from "../css/loading.module.css";
 import React from "react";
 
 function Loading() {
