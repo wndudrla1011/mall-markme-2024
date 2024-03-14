@@ -1,35 +1,55 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../../css/common/basicMenu.module.css";
+import styles from "../../css/basicMenu.module.css";
 
 function BasicMenu() {
   return (
     <nav className={styles.navbar}>
-      <div>
-        <img className="logo" alt="logo.ico" src="favicon.ico" />
+      <div className={styles.navbar__logo}>
+        <label className={styles.navbar__logo__back}>
+          MARK
+          <br />
+          ME
+        </label>
       </div>
 
       <ul className={styles.navbar__menu}>
         <li>
           <Link to={"/"}>HOME</Link>
         </li>
+        <div className={styles.dropdown}>
+          <button className={styles.dropdownBtn}>
+            MY
+            <li className={styles.dropdown__content}>
+              <Link className={styles.dropdown__content__link} to={"/my/info"}>
+                INFO
+              </Link>
+              <Link className={styles.dropdown__content__link} to={"/my/posts"}>
+                MY-POSTS
+              </Link>
+              <Link
+                className={styles.dropdown__content__link}
+                to={"/my/comments"}
+              >
+                MY-COMMENTS
+              </Link>
+            </li>
+          </button>
+        </div>
         <li>
-          <Link to={"/"}>MY</Link>
+          <Link to={"/order"}>ORDER</Link>
         </li>
         <li>
-          <Link to={"/"}>ORDER</Link>
+          <Link to={"/cart"}>CART</Link>
         </li>
         <li>
-          <Link to={"/"}>CART</Link>
-        </li>
-        <li>
-          <Link to={"/"}>Q&A</Link>
+          <Link to={"/feedback"}>Q&A</Link>
         </li>
       </ul>
 
       <ul className={styles.navbar__login}>
         <li>
-          <Link>LOGIN</Link>
+          <Link to={"/member/login"}>LOGIN</Link>
         </li>
       </ul>
     </nav>
