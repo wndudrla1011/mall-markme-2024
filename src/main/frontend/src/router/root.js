@@ -12,7 +12,7 @@ const Main = lazy(() => {
 });
 
 const CartIndex = lazy(() => import("../pages/cart/IndexPage"));
-const OrderIndex = lazy(() => import("../pages/orders/IndexPage"));
+const OrderIndex = lazy(() => import("../pages/order/IndexPage"));
 
 const root = createBrowserRouter([
   {

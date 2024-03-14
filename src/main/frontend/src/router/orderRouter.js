@@ -2,8 +2,8 @@ import React, { Suspense, lazy } from "react";
 import Loading from "../pages/Loading";
 import { Navigate } from "react-router-dom";
 
-const OrderList = lazy(() => import("../pages/orders/ListPage"));
-const OrderRead = lazy(() => import("../pages/orders/ReadPage"));
+const OrderList = lazy(() => import("../pages/order/ListPage"));
+const OrderRead = lazy(() => import("../pages/order/ReadPage"));
 
 const orderRouter = () => {
   return [
