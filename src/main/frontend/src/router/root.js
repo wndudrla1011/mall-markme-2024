@@ -7,7 +7,7 @@ import orderRouter from "./orderRouter";
 const Main = lazy(() => {
   return Promise.all([
     import("../pages/MainPage"),
-    new Promise((resolve) => setTimeout(resolve, 1200)),
+    new Promise((resolve) => setTimeout(resolve, 1000)),
   ]).then(([moduleExports]) => moduleExports);
 });
 
