@@ -6,6 +6,7 @@ const MemberList = lazy(() => import("../pages/member/ListPage"));
 const Login = lazy(() => import("../pages/member/LoginPage"));
 const MemberAdd = lazy(() => import("../pages/member/AddPage"));
 const MemberRead = lazy(() => import("../pages/member/ReadPage"));
+const MemberEdit = lazy(() => import("../pages/member/EditPage"));
 
 const memberRouter = () => {
   return [
@@ -42,6 +43,14 @@ const memberRouter = () => {
       element: (
         <Suspense fallback={<Loading />}>
           <MemberRead />
+        </Suspense>
+      ),
+    },
+    {
+      path: "edit/:memberId",
+      element: (
+        <Suspense fallback={<Loading />}>
+          <MemberEdit />
         </Suspense>
       ),
     },
