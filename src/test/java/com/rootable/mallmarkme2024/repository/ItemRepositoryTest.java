@@ -6,6 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 @SpringBootTest
 @Log4j2
@@ -17,6 +20,7 @@ public class ItemRepositoryTest {
     @Test
     @DisplayName("샘플 데이터 생성용")
     public void sample() throws Exception {
+
         for (int i = 1; i <= 20; i++) {
             Item item = Item.builder()
                     .name("Item " + i)
@@ -29,6 +33,20 @@ public class ItemRepositoryTest {
 
             log.info(savedItem);
         }
+
+    }
+
+    @Test
+    public void paging() throws Exception {
+
+        PageRequest pageable = PageRequest.of(0, 10, Sort.by("id").descending());
+
+        Page<Item> result = itemRepository.findAll(pageable);
+
+        log.info(result.getTotalElements());
+
+        log.info(result.getContent());
+
     }
 
 }
