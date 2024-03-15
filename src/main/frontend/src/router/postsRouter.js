@@ -4,6 +4,8 @@ import { Navigate } from "react-router-dom";
 
 const PostsList = lazy(() => import("../pages/posts/ListPage"));
 const PostsRead = lazy(() => import("../pages/posts/ReadPage"));
+const PostsEdit = lazy(() => import("../pages/posts/EditPage"));
+const PostsAdd = lazy(() => import("../pages/posts/AddPage"));
 
 const postsRouter = () => {
   return [
@@ -24,6 +26,22 @@ const postsRouter = () => {
       element: (
         <Suspense fallback={<Loading />}>
           <PostsRead />
+        </Suspense>
+      ),
+    },
+    {
+      path: "add",
+      element: (
+        <Suspense fallback={<Loading />}>
+          <PostsAdd />
+        </Suspense>
+      ),
+    },
+    {
+      path: "edit/:postId",
+      element: (
+        <Suspense fallback={<Loading />}>
+          <PostsEdit />
         </Suspense>
       ),
     },
