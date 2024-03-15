@@ -4,6 +4,7 @@ import Loading from "../pages/Loading";
 import cartRouter from "./cartRouter";
 import orderRouter from "./orderRouter";
 import memberRouter from "./memberRouter";
+import postsRouter from "./postsRouter";
 
 const Main = lazy(() => {
   return Promise.all([
@@ -15,6 +16,7 @@ const Main = lazy(() => {
 const CartIndex = lazy(() => import("../pages/cart/IndexPage"));
 const OrderIndex = lazy(() => import("../pages/order/IndexPage"));
 const MemberIndex = lazy(() => import("../pages/member/IndexPage"));
+const PostsIndex = lazy(() => import("../pages/posts/IndexPage"));
 
 const root = createBrowserRouter([
   {
@@ -51,6 +53,15 @@ const root = createBrowserRouter([
       </Suspense>
     ),
     children: memberRouter(),
+  },
+  {
+    path: "posts",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <PostsIndex />
+      </Suspense>
+    ),
+    children: postsRouter(),
   },
 ]);
 
