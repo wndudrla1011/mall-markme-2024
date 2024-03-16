@@ -31,6 +31,7 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @Column(nullable = false)
     @ToString.Exclude
+    @Builder.Default
     private List<CartItem> cartItemList = new ArrayList<>();
 
     @OneToOne
