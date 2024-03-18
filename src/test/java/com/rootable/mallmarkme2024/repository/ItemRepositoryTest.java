@@ -49,4 +49,11 @@ public class ItemRepositoryTest {
 
     }
 
+    @Test
+    public void testSearch() throws Exception {
+
+        itemRepository.searchTest();
+
+    }
+
 }
