@@ -28,4 +28,4 @@ logging:
 com:
   rootable:
     upload:
-      path: upload # ??? ??? ??? ????
+      path: upload # 업로드 파일을 관리할 디렉토리
