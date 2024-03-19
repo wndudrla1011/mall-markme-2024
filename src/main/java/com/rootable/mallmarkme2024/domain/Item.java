@@ -38,16 +38,12 @@ public class Item extends BaseTimeEntity {
     private List<ItemImage> imageList = new ArrayList<>();
 
     @Builder
-    public Item(Long id, String name, Integer price, Integer stock, boolean isDeleted) {
+    public Item(Long id, String name, Integer price, String description, Integer stock, boolean isDeleted) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.stock = stock;
         this.isDeleted = isDeleted;
-    }
-
-    public void changeDescription(String description) {
-        this.description = description;
     }
 
     public void update(String name, Integer price, String description, Integer stock) {

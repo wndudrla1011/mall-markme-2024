@@ -32,11 +32,10 @@ public class ItemRepositoryTest {
             Item item = Item.builder()
                     .name("Item " + (i + 20))
                     .price(i * 1000)
+                    .description("Description")
                     .stock(i)
                     .isDeleted(false)
                     .build();
-
-            item.changeDescription("Description");
 
             item.addImageString(UUID.randomUUID() + "_" + "IMAGE1.jpg");
             item.addImageString(UUID.randomUUID() + "_" + "IMAGE2.jpg");
