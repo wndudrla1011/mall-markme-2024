@@ -46,4 +46,32 @@ public class Item extends BaseTimeEntity {
         this.isDeleted = isDeleted;
     }
 
+    public void changeDescription(String description) {
+        this.description = description;
+    }
+
+    public void update(String name, Integer price, String description, Integer stock) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.stock = stock;
+    }
+
+    //객체로 이미지 추가
+    public void addImage(ItemImage image) {
+        image.setOrd(imageList.size());
+        imageList.add(image);
+    }
+
+    //파일명으로 이미지 추가
+    public void addImageString(String fileName) {
+
+        ItemImage itemImage = ItemImage.builder()
+                .fileName(fileName)
+                .build();
+
+        addImage(itemImage);
+
+    }
+
 }
