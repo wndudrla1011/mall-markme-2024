@@ -16,9 +16,11 @@ public interface ItemService {
 
     ItemDTO get(Long id);
 
+    Long register(ItemDTO itemDTO);
+
     default ItemDTO entityToDTO(Item item) {
 
-        ItemDTO itemDTO = ItemDTO.builder()
+        ItemDTO dto = ItemDTO.builder()
                 .id(item.getId())
                 .name(item.getName())
                 .price(item.getPrice())
@@ -30,14 +32,36 @@ public interface ItemService {
         List<ItemImage> imageList = item.getImageList();
 
         if (imageList == null || imageList.isEmpty()) {
-            return itemDTO;
+            return dto;
         }
 
         List<String> fileNameList = imageList.stream().map(ItemImage::getFileName).toList();
 
-        itemDTO.setUploadFileNames(fileNameList);
+        dto.setUploadFileNames(fileNameList);
 
-        return itemDTO;
+        return dto;
+
+    }
+
+    default Item dtoToEntity(ItemDTO dto) {
+
+        Item item = Item.builder()
+                .id(dto.getId())
+                .name(dto.getName())
+                .price(dto.getPrice())
+                .description(dto.getDescription())
+                .stock(dto.getStock())
+                .build();
+
+        List<String> uploadFileNames = dto.getUploadFileNames();
+
+        if (uploadFileNames == null || uploadFileNames.size() == 0) {
+            return item;
+        }
+
+        uploadFileNames.forEach(item::addImageString);
+
+        return item;
 
     }
 

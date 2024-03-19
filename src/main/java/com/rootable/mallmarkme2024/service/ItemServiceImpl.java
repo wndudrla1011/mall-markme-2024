@@ -81,4 +81,20 @@ public class ItemServiceImpl implements ItemService {
 
     }
 
+    /*
+    * 등록
+    * */
+    @Override
+    public Long register(ItemDTO itemDTO) {
+
+        Item item = dtoToEntity(itemDTO);
+
+        log.info("--------------------------------");
+        log.info(item);
+        log.info(item.getImageList());
+
+        return itemRepository.save(item).getId();
+
+    }
+
 }

@@ -4,12 +4,14 @@ import com.rootable.mallmarkme2024.dto.ItemDTO;
 import com.rootable.mallmarkme2024.dto.PageRequestDTO;
 import com.rootable.mallmarkme2024.dto.PageResponseDTO;
 import com.rootable.mallmarkme2024.service.ItemService;
+import com.rootable.mallmarkme2024.util.CustomFileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @Log4j2
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ItemController {
 
     private final ItemService itemService;
+    private final CustomFileUtil fileUtil;
 
     @GetMapping("/{itemId}")
     public ItemDTO get(@PathVariable("itemId") Long itemId) {
@@ -35,6 +38,32 @@ public class ItemController {
         log.info("list : " + pageRequestDTO);
 
         return itemService.getList(pageRequestDTO);
+
+    }
+
+    @PostMapping("/")
+    public Map<String, Long> register(ItemDTO itemDTO) {
+
+        log.info("상품 등록");
+        log.info("register : " + itemDTO);
+
+        List<MultipartFile> files = itemDTO.getFiles(); //업로드할 파일 목록
+
+        List<String> uploadedFileNames = fileUtil.saveFiles(files); //업로드한 파일 목록
+
+        itemDTO.setUploadFileNames(uploadedFileNames); //DTO 바인딩
+
+        log.info("uploadedFileNames : " + uploadedFileNames);
+
+        Long itemId = itemService.register(itemDTO);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException();
+        }
+
+        return Map.of("RESULT", itemId);
 
     }
 
