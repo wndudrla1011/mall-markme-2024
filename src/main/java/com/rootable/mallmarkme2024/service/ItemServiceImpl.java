@@ -47,6 +47,7 @@ public class ItemServiceImpl implements ItemService {
             return ItemSaveDTO.builder()
                     .id(item.getId())
                     .name(item.getName())
+                    .writer(item.getWriter())
                     .price(item.getPrice())
                     .description(item.getDescription())
                     .stock(item.getStock())
