@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Log4j2
@@ -70,8 +71,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ItemDTO get(Long id) {
 
-        Item item = itemRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 상품이 존재하지 않습니다. id = " + id));
+        log.info("Item 조회 id = " + id);
+
+        Optional<Item> result = itemRepository.findById(id);
+
+        Item item = result.orElseThrow();
 
         return entityToDTO(item);
 
