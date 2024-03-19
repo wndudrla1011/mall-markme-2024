@@ -64,4 +64,17 @@ public class ItemServiceImpl implements ItemService {
 
     }
 
+    /*
+    * 단건 조회
+    * */
+    @Override
+    public ItemDTO get(Long id) {
+
+        Item item = itemRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 상품이 존재하지 않습니다. id = " + id));
+
+        return entityToDTO(item);
+
+    }
+
 }
