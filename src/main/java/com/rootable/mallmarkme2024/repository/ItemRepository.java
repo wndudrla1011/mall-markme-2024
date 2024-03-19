@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ItemRepository extends JpaRepository<Item, Long>, ItemSearch {
 
-    @Query("select i, img from Item i left join i.imageList img where image.ord = 0 and i.delFlag = false")
+    @Query("select i, img from Item i left join i.imageList img where img.ord = 0 and i.isDeleted = false")
     Page<Object[]> selectList(Pageable pageable);
 
 }
