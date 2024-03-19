@@ -2,7 +2,7 @@ package com.rootable.mallmarkme2024.service;
 
 import com.rootable.mallmarkme2024.domain.Item;
 import com.rootable.mallmarkme2024.domain.ItemImage;
-import com.rootable.mallmarkme2024.dto.ItemDTO;
+import com.rootable.mallmarkme2024.dto.ItemSaveDTO;
 import com.rootable.mallmarkme2024.dto.PageRequestDTO;
 import com.rootable.mallmarkme2024.dto.PageResponseDTO;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,15 +12,15 @@ import java.util.List;
 @Transactional
 public interface ItemService {
 
-    PageResponseDTO<ItemDTO> getList(PageRequestDTO pageRequestDTO);
+    PageResponseDTO<ItemSaveDTO> getList(PageRequestDTO pageRequestDTO);
 
-    ItemDTO get(Long id);
+    ItemSaveDTO get(Long id);
 
-    Long register(ItemDTO itemDTO);
+    Long register(ItemSaveDTO dto);
 
-    default ItemDTO entityToDTO(Item item) {
+    default ItemSaveDTO entityToDTO(Item item) {
 
-        ItemDTO dto = ItemDTO.builder()
+        ItemSaveDTO dto = ItemSaveDTO.builder()
                 .id(item.getId())
                 .name(item.getName())
                 .price(item.getPrice())
@@ -43,7 +43,7 @@ public interface ItemService {
 
     }
 
-    default Item dtoToEntity(ItemDTO dto) {
+    default Item dtoToEntity(ItemSaveDTO dto) {
 
         Item item = Item.builder()
                 .id(dto.getId())

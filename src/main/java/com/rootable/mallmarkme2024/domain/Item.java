@@ -23,6 +23,9 @@ public class Item extends BaseTimeEntity {
     private String name;
 
     @Column(nullable = false)
+    private String writer;
+
+    @Column(nullable = false)
     private Integer price;
 
     @Column(columnDefinition = "TEXT")
@@ -38,16 +41,16 @@ public class Item extends BaseTimeEntity {
     private List<ItemImage> imageList = new ArrayList<>();
 
     @Builder
-    public Item(Long id, String name, Integer price, String description, Integer stock, boolean isDeleted) {
+    public Item(Long id, String name, String writer, Integer price, String description, Integer stock, boolean isDeleted) {
         this.id = id;
         this.name = name;
+        this.writer = writer;
         this.price = price;
         this.stock = stock;
         this.isDeleted = isDeleted;
     }
 
-    public void update(String name, Integer price, String description, Integer stock) {
-        this.name = name;
+    public void update(Integer price, String description, Integer stock) {
         this.price = price;
         this.description = description;
         this.stock = stock;

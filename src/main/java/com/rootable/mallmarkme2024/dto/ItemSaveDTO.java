@@ -13,11 +13,13 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemDTO {
+public class ItemSaveDTO {
 
     private Long id;
 
     private String name;
+
+    private String writer;
 
     private Integer price;
 

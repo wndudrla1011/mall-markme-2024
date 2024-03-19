@@ -1,6 +1,6 @@
 package com.rootable.mallmarkme2024.controller;
 
-import com.rootable.mallmarkme2024.dto.ItemDTO;
+import com.rootable.mallmarkme2024.dto.ItemSaveDTO;
 import com.rootable.mallmarkme2024.dto.PageRequestDTO;
 import com.rootable.mallmarkme2024.dto.PageResponseDTO;
 import com.rootable.mallmarkme2024.service.ItemService;
@@ -23,7 +23,7 @@ public class ItemController {
     private final CustomFileUtil fileUtil;
 
     @GetMapping("/{itemId}")
-    public ItemDTO get(@PathVariable("itemId") Long itemId) {
+    public ItemSaveDTO get(@PathVariable("itemId") Long itemId) {
 
         log.info("상품 정보");
 
@@ -32,7 +32,7 @@ public class ItemController {
     }
 
     @GetMapping("/list")
-    public PageResponseDTO<ItemDTO> list(PageRequestDTO pageRequestDTO) {
+    public PageResponseDTO<ItemSaveDTO> list(PageRequestDTO pageRequestDTO) {
 
         log.info("상품 목록");
         log.info("list : " + pageRequestDTO);
@@ -42,20 +42,20 @@ public class ItemController {
     }
 
     @PostMapping("/")
-    public Map<String, Long> register(ItemDTO itemDTO) {
+    public Map<String, Long> register(ItemSaveDTO dto) {
 
         log.info("상품 등록");
-        log.info("register : " + itemDTO);
+        log.info("register : " + dto);
 
-        List<MultipartFile> files = itemDTO.getFiles(); //업로드할 파일 목록
+        List<MultipartFile> files = dto.getFiles(); //업로드할 파일 목록
 
         List<String> uploadedFileNames = fileUtil.saveFiles(files); //업로드한 파일 목록
 
-        itemDTO.setUploadFileNames(uploadedFileNames); //DTO 바인딩
+        dto.setUploadFileNames(uploadedFileNames); //DTO 바인딩
 
         log.info("uploadedFileNames : " + uploadedFileNames);
 
-        Long itemId = itemService.register(itemDTO);
+        Long itemId = itemService.register(dto);
 
         try {
             Thread.sleep(1000);
