@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -72,15 +74,26 @@ public class ItemRepositoryTest {
     @Test
     public void selectOne() throws Exception {
 
-        Long id = 25L;
+        Long id = 1L;
 
         Optional<Item> result = itemRepository.selectOne(id);
 
         Item item = result.orElseThrow();
 
-        log.info(item);
+        log.info(item.isDeleted());
 
         log.info(item.getImageList());
+
+    }
+
+    @Commit
+    @Transactional
+    @Test
+    public void delete() throws Exception {
+
+        Long id = 1L;
+
+        itemRepository.delete(id, true);
 
     }
 

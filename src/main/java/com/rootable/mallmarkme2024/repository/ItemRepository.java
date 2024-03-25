@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -16,6 +17,10 @@ public interface ItemRepository extends JpaRepository<Item, Long>, ItemSearch {
     @EntityGraph(attributePaths = "imageList")
     @Query("select i from Item i where i.id = :id")
     Optional<Item> selectOne(@Param("id") Long id);
+
+    @Modifying
+    @Query("update Item i set i.isDeleted = :isDeleted where i.id = :id")
+    void delete(@Param("id") Long id, @Param("isDeleted") boolean isDeleted);
 
     @Query("select i, img from Item i left join i.imageList img where img.ord = 0 and i.isDeleted = false")
     Page<Object[]> selectList(Pageable pageable);
