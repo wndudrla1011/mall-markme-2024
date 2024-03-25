@@ -1,8 +1,10 @@
 package com.rootable.mallmarkme2024.repository.search;
 
+import com.querydsl.core.Tuple;
 import com.querydsl.jpa.JPQLQuery;
 import com.rootable.mallmarkme2024.domain.Item;
 import com.rootable.mallmarkme2024.domain.QItem;
+import com.rootable.mallmarkme2024.domain.QItemImage;
 import com.rootable.mallmarkme2024.dto.PageRequestDTO;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.*;
@@ -23,22 +25,28 @@ public class ItemSearchImpl extends QuerydslRepositorySupport implements ItemSea
 
         log.info("----searchTest----");
 
-        QItem item = QItem.item;
-
-        JPQLQuery<Item> query = from(item);
-
         Pageable pageable = PageRequest.of(
                 pageRequestDTO.getPage() - 1,
-                             pageRequestDTO.getSize(),
-                             Sort.by("id").descending());
+                pageRequestDTO.getSize(),
+                Sort.by("id").descending());
 
-        Objects.requireNonNull(this.getQuerydsl()).applyPagination(pageable, query);
+        QItem item = QItem.item;
+        QItemImage itemImage = QItemImage.itemImage;
 
-        List<Item> list = query.fetch(); //목록 데이터
+        JPQLQuery<Item> query = from(item);
+        query.leftJoin(item.imageList, itemImage); //@ElementCollection 처리
 
-        long total = query.fetchCount(); //행 개수
+        Objects.requireNonNull(this.getQuerydsl()).applyPagination(pageable, query); //페이징
 
-        return new PageImpl<>(list, pageable, total);
+        List<Tuple> list = query.select(item, itemImage).fetch(); //목록 데이터
+
+        long count = query.fetchCount(); //행 개수
+
+        log.info("================================");
+        log.info(count);
+        log.info(list);
+
+        return null;
 
     }
 
