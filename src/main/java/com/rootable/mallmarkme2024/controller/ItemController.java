@@ -7,6 +7,8 @@ import com.rootable.mallmarkme2024.service.ItemService;
 import com.rootable.mallmarkme2024.util.CustomFileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -65,6 +67,11 @@ public class ItemController {
 
         return Map.of("RESULT", itemId);
 
+    }
+
+    @GetMapping("/read/{fileName}")
+    public ResponseEntity<Resource> readFile(@PathVariable("fileName") String fileName) {
+        return fileUtil.getFile(fileName);
     }
 
 }
