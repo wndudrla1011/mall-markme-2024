@@ -73,4 +73,8 @@ public class Item extends BaseTimeEntity {
 
     }
 
+    public void clearList() {
+        this.imageList.clear();
+    }
+
 }
