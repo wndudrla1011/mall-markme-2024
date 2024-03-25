@@ -74,7 +74,7 @@ public class ItemServiceImpl implements ItemService {
 
         log.info("Item 조회 id = " + id);
 
-        Optional<Item> result = itemRepository.findById(id);
+        Optional<Item> result = itemRepository.selectOne(id);
 
         Item item = result.orElseThrow();
 
