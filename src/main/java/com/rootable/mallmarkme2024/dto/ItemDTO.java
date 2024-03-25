@@ -18,7 +18,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemSaveDTO {
+public class ItemDTO {
 
     private Long id;
 

@@ -1,6 +1,6 @@
 package com.rootable.mallmarkme2024.controller;
 
-import com.rootable.mallmarkme2024.dto.ItemSaveDTO;
+import com.rootable.mallmarkme2024.dto.ItemDTO;
 import com.rootable.mallmarkme2024.dto.PageRequestDTO;
 import com.rootable.mallmarkme2024.dto.PageResponseDTO;
 import com.rootable.mallmarkme2024.service.ItemService;
@@ -23,7 +23,7 @@ public class ItemController {
     private final CustomFileUtil fileUtil;
 
     @GetMapping("/{itemId}")
-    public ItemSaveDTO get(@PathVariable("itemId") Long itemId) {
+    public ItemDTO get(@PathVariable("itemId") Long itemId) {
 
         log.info("상품 정보");
 
@@ -32,7 +32,7 @@ public class ItemController {
     }
 
     @GetMapping("/list")
-    public PageResponseDTO<ItemSaveDTO> list(PageRequestDTO pageRequestDTO) {
+    public PageResponseDTO<ItemDTO> list(PageRequestDTO pageRequestDTO) {
 
         log.info("상품 목록");
         log.info("list : " + pageRequestDTO);
@@ -42,7 +42,7 @@ public class ItemController {
     }
 
     @PostMapping("/")
-    public Map<String, Long> register(ItemSaveDTO dto) {
+    public Map<String, Long> register(ItemDTO dto) {
 
         log.info("상품 등록");
         log.info("register : " + dto);

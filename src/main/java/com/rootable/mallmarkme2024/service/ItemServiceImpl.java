@@ -2,7 +2,7 @@ package com.rootable.mallmarkme2024.service;
 
 import com.rootable.mallmarkme2024.domain.Item;
 import com.rootable.mallmarkme2024.domain.ItemImage;
-import com.rootable.mallmarkme2024.dto.ItemSaveDTO;
+import com.rootable.mallmarkme2024.dto.ItemDTO;
 import com.rootable.mallmarkme2024.dto.PageRequestDTO;
 import com.rootable.mallmarkme2024.dto.PageResponseDTO;
 import com.rootable.mallmarkme2024.repository.ItemRepository;
@@ -28,7 +28,7 @@ public class ItemServiceImpl implements ItemService {
     * 목록 조회
     * */
     @Override
-    public PageResponseDTO<ItemSaveDTO> getList(PageRequestDTO pageRequestDTO) {
+    public PageResponseDTO<ItemDTO> getList(PageRequestDTO pageRequestDTO) {
 
         Pageable pageable = PageRequest.of(
                 pageRequestDTO.getPage() - 1,
@@ -37,14 +37,14 @@ public class ItemServiceImpl implements ItemService {
 
         Page<Object[]> pageData = itemRepository.selectList(pageable);
 
-        List<ItemSaveDTO> dtoList = pageData.get().map(arr -> {
+        List<ItemDTO> dtoList = pageData.get().map(arr -> {
 
             Item item = (Item) arr[0];
             ItemImage itemImage = (ItemImage) arr[1];
 
             String imageStr = itemImage.getFileName(); //업로드 파일 이름(ord = 0)
 
-            return ItemSaveDTO.builder()
+            return ItemDTO.builder()
                     .id(item.getId())
                     .name(item.getName())
                     .writer(item.getWriter())
@@ -58,7 +58,7 @@ public class ItemServiceImpl implements ItemService {
 
         long totalCount = pageData.getTotalElements();
 
-        return PageResponseDTO.<ItemSaveDTO>innerBuilder()
+        return PageResponseDTO.<ItemDTO>innerBuilder()
                 .dtoList(dtoList)
                 .pageRequestDTO(pageRequestDTO)
                 .totalCount((int) totalCount)
@@ -70,7 +70,7 @@ public class ItemServiceImpl implements ItemService {
     * 단건 조회
     * */
     @Override
-    public ItemSaveDTO get(Long id) {
+    public ItemDTO get(Long id) {
 
         log.info("Item 조회 id = " + id);
 
@@ -86,7 +86,7 @@ public class ItemServiceImpl implements ItemService {
     * 등록
     * */
     @Override
-    public Long register(ItemSaveDTO dto) {
+    public Long register(ItemDTO dto) {
 
         Item item = dtoToEntity(dto);
 
