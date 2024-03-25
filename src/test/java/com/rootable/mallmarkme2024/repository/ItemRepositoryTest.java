@@ -1,8 +1,6 @@
 package com.rootable.mallmarkme2024.repository;
 
 import com.rootable.mallmarkme2024.domain.Item;
-import com.rootable.mallmarkme2024.dto.PageRequestDTO;
-import com.rootable.mallmarkme2024.service.ItemService;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,9 +21,6 @@ public class ItemRepositoryTest {
 
     @Autowired
     private ItemRepository itemRepository;
-
-    @Autowired
-    private ItemService itemService;
 
     @Test
     @DisplayName("샘플 데이터 생성용")
@@ -59,15 +54,6 @@ public class ItemRepositoryTest {
         log.info(result.getTotalElements());
 
         log.info(result.getContent());
-
-    }
-
-    @Test
-    public void getList() throws Exception {
-
-        PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
-
-        log.info(itemService.getList(pageRequestDTO));
 
     }
 
