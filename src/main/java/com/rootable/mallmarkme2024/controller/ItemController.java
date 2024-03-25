@@ -28,7 +28,7 @@ public class ItemController {
     @GetMapping("/{itemId}")
     public ItemDTO get(@PathVariable("itemId") Long itemId) {
 
-        log.info("상품 정보");
+        log.info("=======상품 정보 조회=======");
 
         return itemService.get(itemId);
 
@@ -37,7 +37,7 @@ public class ItemController {
     @GetMapping("/list")
     public PageResponseDTO<ItemDTO> list(PageRequestDTO pageRequestDTO) {
 
-        log.info("상품 목록");
+        log.info("=======상품 목록 조회=======");
         log.info("list : " + pageRequestDTO);
 
         return itemService.getList(pageRequestDTO);
@@ -47,7 +47,7 @@ public class ItemController {
     @PostMapping("/")
     public Map<String, Long> register(ItemDTO dto) {
 
-        log.info("상품 등록");
+        log.info("=======상품 등록=======");
         log.info("register : " + dto);
 
         List<MultipartFile> files = dto.getFiles(); //업로드할 파일 목록
@@ -73,7 +73,7 @@ public class ItemController {
     @GetMapping("/read/{fileName}")
     public ResponseEntity<Resource> readFile(@PathVariable("fileName") String fileName) {
 
-        log.info("파일 조회");
+        log.info("=======파일 조회=======");
 
         return fileUtil.getFile(fileName);
 
@@ -82,14 +82,14 @@ public class ItemController {
     @PutMapping("/{itemId}")
     public Map<String, String> update(@PathVariable("itemId") Long itemId, ItemDTO dto) {
 
-        log.info("상품 수정");
+        log.info("=======상품 수정=======");
 
         dto.setId(itemId);
 
         /*
-        * Existing Files
-        * 제거해야 할 파일 필터링 목적
-        * */
+         * Existing Files
+         * 제거해야 할 파일 필터링 목적
+         * */
         ItemDTO oldItemDTO = itemService.get(itemId);
         List<String> oldFileNames = oldItemDTO.getUploadFileNames();
 
@@ -108,8 +108,8 @@ public class ItemController {
         itemService.update(dto); //수정
 
         /*
-        * Final File List -> willUploadedFiles
-        * */
+         * Final File List -> willUploadedFiles
+         * */
         if (oldFileNames != null && !oldFileNames.isEmpty()) {
 
             List<String> willRemoveList = oldFileNames
@@ -120,6 +120,19 @@ public class ItemController {
             fileUtil.deleteFiles(willRemoveList);
 
         }
+
+        return Map.of("RESULT", "SUCCESS");
+
+    }
+
+    @DeleteMapping("/{itemId}")
+    public Map<String, String> delete(@PathVariable("itemId") Long itemId) {
+
+        List<String> oldFileNames = itemService.get(itemId).getUploadFileNames();
+
+        itemService.delete(itemId);
+
+        fileUtil.deleteFiles(oldFileNames);
 
         return Map.of("RESULT", "SUCCESS");
 

@@ -121,4 +121,12 @@ public class ItemServiceImpl implements ItemService {
 
     }
 
+    /*
+    * 삭제
+    * */
+    @Override
+    public void delete(Long id) {
+        itemRepository.delete(id, true);
+    }
+
 }

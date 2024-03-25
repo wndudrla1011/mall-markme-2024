@@ -20,6 +20,8 @@ public interface ItemService {
 
     void update(ItemDTO dto);
 
+    void delete(Long id);
+
     default ItemDTO entityToDTO(Item item) {
 
         ItemDTO dto = ItemDTO.builder()
