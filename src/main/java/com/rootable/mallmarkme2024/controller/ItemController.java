@@ -71,7 +71,13 @@ public class ItemController {
 
     @GetMapping("/read/{fileName}")
     public ResponseEntity<Resource> readFile(@PathVariable("fileName") String fileName) {
+
+        log.info("파일 조회");
+
         return fileUtil.getFile(fileName);
+
     }
+
+
 
 }

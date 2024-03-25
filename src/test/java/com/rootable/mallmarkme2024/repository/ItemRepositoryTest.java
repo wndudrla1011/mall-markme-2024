@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @SpringBootTest
@@ -67,5 +68,20 @@ public class ItemRepositoryTest {
         log.info(itemService.getList(pageRequestDTO));
 
     }
-    
+
+    @Test
+    public void selectOne() throws Exception {
+
+        Long id = 25L;
+
+        Optional<Item> result = itemRepository.selectOne(id);
+
+        Item item = result.orElseThrow();
+
+        log.info(item);
+
+        log.info(item.getImageList());
+
+    }
+
 }
