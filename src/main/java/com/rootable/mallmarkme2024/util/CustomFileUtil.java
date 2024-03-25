@@ -111,4 +111,32 @@ public class CustomFileUtil {
 
     }
 
+    /*
+    * 여러 파일 삭제
+    * */
+    public void deleteFiles(List<String> fileNames) {
+
+        if (fileNames == null || fileNames.size() == 0) {
+            return;
+        }
+
+        fileNames.forEach(fileName -> {
+
+            String thumbnailFileName = "s_" + fileName;
+
+            //원본/썸네일 파일 경로
+            Path thumbnailPath = Paths.get(uploadPath, thumbnailFileName);
+            Path filePath = Paths.get(uploadPath, fileName);
+
+            try {
+                Files.deleteIfExists(filePath); //파일 삭제
+                Files.deleteIfExists(thumbnailPath); //썸네일 삭제
+            } catch (IOException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+
+        });
+
+    }
+
 }
