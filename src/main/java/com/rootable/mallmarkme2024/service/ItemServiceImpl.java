@@ -98,4 +98,27 @@ public class ItemServiceImpl implements ItemService {
 
     }
 
+    /*
+    * 수정
+    * */
+    @Override
+    public void update(ItemDTO dto) {
+
+        Item item = itemRepository.findById(dto.getId()).orElseThrow();
+
+        item.update(dto.getPrice(), dto.getDescription(), dto.getStock());
+
+        List<String> uploadFileNames = dto.getUploadFileNames();
+
+        item.clearList();
+
+        //재업로드를 했다면
+        if (uploadFileNames != null && !uploadFileNames.isEmpty()) {
+            uploadFileNames.forEach(item::addImageString);
+        }
+
+        itemRepository.save(item);
+
+    }
+
 }

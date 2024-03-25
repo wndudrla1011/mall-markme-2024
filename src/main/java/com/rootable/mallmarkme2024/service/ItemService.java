@@ -18,6 +18,8 @@ public interface ItemService {
 
     Long register(ItemDTO dto);
 
+    void update(ItemDTO dto);
+
     default ItemDTO entityToDTO(Item item) {
 
         ItemDTO dto = ItemDTO.builder()
