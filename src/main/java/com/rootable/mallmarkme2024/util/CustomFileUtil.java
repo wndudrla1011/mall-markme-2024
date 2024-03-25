@@ -3,6 +3,7 @@ package com.rootable.mallmarkme2024.util;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,12 +50,26 @@ public class CustomFileUtil {
 
         for (MultipartFile file : files) {
 
-            String savedName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();//저장할 파일 이름
+            String savedName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename(); //저장할 파일 이름
 
-            Path savePath = Paths.get(uploadPath, savedName);//uploadPath: 저장할 경로
+            Path savePath = Paths.get(uploadPath, savedName); //uploadPath: 저장할 경로
 
             try {
-                Files.copy(file.getInputStream(), savePath); //파일 저장
+                Files.copy(file.getInputStream(), savePath); //원본 파일 업로드
+
+                String contentType = file.getContentType(); //MIME 타입
+
+                //이미지 파일
+                if (contentType != null && contentType.startsWith("image")) {
+
+                    //설정: 썸네일 이름 + 업로드 경로
+                    Path thumbnailPath = Paths.get(uploadPath, "s_" + savedName);
+
+                    //설정: 썸네일 크기, 업로드
+                    Thumbnails.of(savePath.toFile()).size(200, 200).toFile(thumbnailPath.toFile());
+
+                }
+
                 uploadNames.add(savedName); //파일 이름 추가
             } catch (IOException e) {
                 throw new RuntimeException();

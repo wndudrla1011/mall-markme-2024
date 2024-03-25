@@ -55,10 +55,10 @@ public class ItemController {
 
         log.info("uploadedFileNames : " + uploadedFileNames);
 
-        Long itemId = itemService.register(dto);
+        Long itemId = itemService.register(dto); //상품 등록
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1000); //등록 대기 1s
         } catch (InterruptedException e) {
             throw new RuntimeException();
         }
