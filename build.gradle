@@ -53,6 +53,9 @@ dependencies {
 			"jakarta.annotation:jakarta.annotation-api",
 			"com.querydsl:querydsl-apt:${queryDslVersion}:jakarta"
 	)
+
+	//thumnailator
+	implementation 'net.coobird:thumbnailator:0.4.19'
 }
 
 // QueryDSL
