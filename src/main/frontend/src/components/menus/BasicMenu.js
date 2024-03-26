@@ -39,9 +39,24 @@ function BasicMenu() {
             </li>
           </button>
         </div>
-        <li>
-          <Link to={"/item"}>ITEMS</Link>
-        </li>
+
+        <div className={styles.dropdown}>
+          <button className={styles.dropdownBtn}>
+            ITEMS
+            <li className={styles.dropdown__content}>
+              <Link
+                className={styles.dropdown__content__link}
+                to={"/item/list"}
+              >
+                LIST
+              </Link>
+              <Link className={styles.dropdown__content__link} to={"/item/add"}>
+                ADD
+              </Link>
+            </li>
+          </button>
+        </div>
+
         <li>
           <Link to={"/feedback"}>Q&A</Link>
         </li>
