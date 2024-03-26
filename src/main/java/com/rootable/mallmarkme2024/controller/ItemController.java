@@ -14,12 +14,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @Log4j2
 @RequiredArgsConstructor
-@RequestMapping("/api/item")
+@RequestMapping("/api/items")
 public class ItemController {
 
     private final ItemService itemService;
@@ -34,7 +33,7 @@ public class ItemController {
 
     }
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public PageResponseDTO<ItemDTO> list(PageRequestDTO pageRequestDTO) {
 
         log.info("=======상품 목록 조회=======");
@@ -44,7 +43,7 @@ public class ItemController {
 
     }
 
-    @PostMapping("/")
+    @PostMapping("/add")
     public Map<String, Long> register(ItemDTO dto) {
 
         log.info("=======상품 등록=======");
