@@ -8,7 +8,9 @@ function BasicLayout({ children }) {
       <BasicMenu />
 
       {/* children */}
-      <div>{children}</div>
+      <div className="bg-black w-full h-screen flex flex-col space-y-3">
+        {children}
+      </div>
     </>
   );
 }
