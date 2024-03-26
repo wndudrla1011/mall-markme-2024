@@ -21,4 +21,5 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS") //모든 메서드 허용
                 .allowedOrigins("*"); //모든 소스 허용
     }
+
 }
