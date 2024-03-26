@@ -66,7 +66,7 @@ const root = createBrowserRouter([
     children: postsRouter(),
   },
   {
-    path: "item",
+    path: "items",
     element: (
       <Suspense fallback={<Loading />}>
         <ItemIndex />
