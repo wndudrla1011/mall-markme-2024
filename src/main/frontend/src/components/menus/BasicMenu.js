@@ -40,7 +40,7 @@ function BasicMenu() {
           </button>
         </div>
         <li>
-          <Link to={"/order"}>ITEMS</Link>
+          <Link to={"/item"}>ITEMS</Link>
         </li>
         <li>
           <Link to={"/feedback"}>Q&A</Link>
