@@ -46,11 +46,14 @@ function BasicMenu() {
             <li className={styles.dropdown__content}>
               <Link
                 className={styles.dropdown__content__link}
-                to={"/item/list"}
+                to={"/items/list"}
               >
                 LIST
               </Link>
-              <Link className={styles.dropdown__content__link} to={"/item/add"}>
+              <Link
+                className={styles.dropdown__content__link}
+                to={"/items/add"}
+              >
                 ADD
               </Link>
             </li>
