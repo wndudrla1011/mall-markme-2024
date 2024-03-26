@@ -24,8 +24,8 @@ const useCustomMove = () => {
   const moveToList = (pageParam) => {
     let queryStr = "";
 
-    //요청 page, size 있음
     if (pageParam) {
+      //요청 page, size 있음
       const pageNum = getNum(pageParam.page, page);
       const sizeNum = getNum(pageParam.size, size);
 
@@ -33,16 +33,15 @@ const useCustomMove = () => {
         page: pageNum,
         size: sizeNum,
       }).toString();
-    }
-    //요청 page, size 없음 => 기본값
-    else {
+    } else {
+      //요청 page, size 없음 => 기본값
       queryStr = queryDefault;
     }
 
     navigate({ pathname: "../list", search: queryStr });
   };
 
-  return;
+  return { page, size, moveToList };
 };
 
 export default useCustomMove;
