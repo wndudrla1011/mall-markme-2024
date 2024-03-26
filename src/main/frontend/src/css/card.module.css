@@ -1,0 +1,12 @@
+.card__container {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: 400px 400px 400px;
+  grid-gap: 100px;
+  text-align: center;
+}
+
+.card__holder {
+  padding: 20px;
+  font-size: 2rem;
+}

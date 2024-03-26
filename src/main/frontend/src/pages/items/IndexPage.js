@@ -8,7 +8,7 @@ function IndexPage() {
       <div className="item__title text-lime-400 text-8xl py-10 text-center">
         Today's Mark Me
       </div>
-      <div className="flex flex-wrap w-full">
+      <div className="flex justify-center w-full">
         <Outlet />
       </div>
     </BasicLayout>
