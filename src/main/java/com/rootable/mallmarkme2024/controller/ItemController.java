@@ -33,7 +33,7 @@ public class ItemController {
 
     }
 
-    @GetMapping("/")
+    @GetMapping("/list")
     public PageResponseDTO<ItemDTO> list(PageRequestDTO pageRequestDTO) {
 
         log.info("=======상품 목록 조회=======");
