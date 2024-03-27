@@ -28,7 +28,7 @@ public class Item extends BaseTimeEntity {
     @Column(nullable = false)
     private Integer price;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 500)
     private String description;
 
     @Column(nullable = false)
@@ -46,6 +46,7 @@ public class Item extends BaseTimeEntity {
         this.name = name;
         this.writer = writer;
         this.price = price;
+        this.description = description;
         this.stock = stock;
         this.isDeleted = isDeleted;
     }
