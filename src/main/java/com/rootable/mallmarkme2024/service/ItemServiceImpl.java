@@ -129,4 +129,12 @@ public class ItemServiceImpl implements ItemService {
         itemRepository.delete(id, true);
     }
 
+    /*
+    * Clear
+    * */
+    @Override
+    public void clear() {
+        itemRepository.deleteAll();
+    }
+
 }

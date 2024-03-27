@@ -6,6 +6,7 @@ import com.rootable.mallmarkme2024.dto.PageRequestDTO;
 import com.rootable.mallmarkme2024.dto.PageResponseDTO;
 import com.rootable.mallmarkme2024.repository.ItemRepository;
 import lombok.extern.log4j.Log4j2;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -64,6 +65,12 @@ public class ItemServiceTest {
         Item item = itemRepository.findById(savedId).orElseThrow();
         assertThat(item).isNotNull();
 
+    }
+
+    @Test
+    @DisplayName("DB 비우는 용도")
+    public void clear() throws Exception {
+        itemService.clear();
     }
 
 }
