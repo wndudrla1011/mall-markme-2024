@@ -1,4 +1,4 @@
-package com.rootable.mallmarkme2024.jwt;
+package com.rootable.mallmarkme2024.handler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

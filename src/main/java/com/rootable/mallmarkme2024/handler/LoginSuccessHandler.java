@@ -40,7 +40,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         String jsonStr = gson.toJson(claims);
 
-        response.setContentType("application/json; charset=UTF-8");
+        response.setContentType("application/json");
 
         PrintWriter printWriter = response.getWriter();
         printWriter.println(jsonStr);
