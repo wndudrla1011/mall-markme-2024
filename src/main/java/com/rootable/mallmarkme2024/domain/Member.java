@@ -1,10 +1,7 @@
 package com.rootable.mallmarkme2024.domain;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +9,9 @@ import java.util.List;
 import static jakarta.persistence.FetchType.*;
 
 @Entity
+@Builder
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
 public class Member extends BaseTimeEntity {
 
@@ -24,8 +23,6 @@ public class Member extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String nickname;
-
-    private boolean isDeleted;
 
     @ElementCollection(fetch = LAZY)
     @ToString.Exclude
@@ -39,14 +36,5 @@ public class Member extends BaseTimeEntity {
     @OrderBy("id desc") //댓글 정렬
     @ToString.Exclude
     private List<Comment> commentList = new ArrayList<>();
-
-    @Builder
-    public Member(String email, String password, String nickname, boolean isDeleted, List<Role> roleList) {
-        this.email = email;
-        this.password = password;
-        this.nickname = nickname;
-        this.isDeleted = isDeleted;
-        this.roleList = roleList;
-    }
 
 }
