@@ -29,7 +29,7 @@ public class TokenProvider {
     /*
     * 토큰 생성
     * */
-    public String createToken(Map<String, Object> valueMap, int min) {
+    public static String createToken(Map<String, Object> valueMap, int min) {
 
         return Jwts.builder()
                 .setHeader(Map.of("typ", "JWT"))
