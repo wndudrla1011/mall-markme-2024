@@ -33,4 +33,3 @@ com:
 jwt:
   header: Authorization
   secret: c697bf98c294f554858e01facc8ee334fdbeb10e3a08d43e5d97a95215be591777a28fd5167018b1450596e910f25c7d610efb7a41d10c78f59f7683249eaee0
-  token-validity-in-seconds: 86400 #1일
