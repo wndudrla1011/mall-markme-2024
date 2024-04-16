@@ -25,9 +25,6 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String nickname;
 
-    @Embedded
-    private Address address;
-
     private boolean isDeleted;
 
     @ElementCollection(fetch = LAZY)
@@ -44,12 +41,10 @@ public class Member extends BaseTimeEntity {
     private List<Comment> commentList = new ArrayList<>();
 
     @Builder
-    public Member(String email, String password, String nickname, Address address,
-                  boolean isDeleted, List<Role> roleList) {
+    public Member(String email, String password, String nickname, boolean isDeleted, List<Role> roleList) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
-        this.address = address;
         this.isDeleted = isDeleted;
         this.roleList = roleList;
     }
