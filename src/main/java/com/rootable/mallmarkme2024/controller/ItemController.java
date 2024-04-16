@@ -127,6 +127,8 @@ public class ItemController {
     @DeleteMapping("/{itemId}")
     public Map<String, String> delete(@PathVariable("itemId") Long itemId) {
 
+        log.info("=======상품 삭제=======");
+
         List<String> oldFileNames = itemService.get(itemId).getUploadFileNames();
 
         itemService.delete(itemId);
