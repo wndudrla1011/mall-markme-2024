@@ -25,11 +25,6 @@ public class CartItem {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "order_id")
-    @ToString.Exclude
-    private Order order;
-
     @Column(nullable = false)
     private Integer quantity;
 
