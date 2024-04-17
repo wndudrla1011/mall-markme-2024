@@ -33,4 +33,16 @@ public class MemberRepositoryTest {
 
     }
 
+    @Test
+    public void read() throws Exception {
+
+        String email = "admin@gamil.com";
+
+        Member member = memberRepository.getWithRoles(email);
+
+        log.info(".............." + member);
+        log.info("................" + member.getRoleList());
+
+    }
+
 }
