@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,6 +44,7 @@ public class ItemController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')")
     @PostMapping("/add")
     public Map<String, Long> register(ItemDTO dto) {
 
@@ -78,6 +80,7 @@ public class ItemController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @PutMapping("/{itemId}")
     public Map<String, String> update(@PathVariable("itemId") Long itemId, ItemDTO dto) {
 
@@ -124,6 +127,7 @@ public class ItemController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @DeleteMapping("/{itemId}")
     public Map<String, String> delete(@PathVariable("itemId") Long itemId) {
 
