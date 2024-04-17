@@ -26,6 +26,7 @@ public class Member extends BaseTimeEntity {
 
     @ElementCollection(fetch = LAZY)
     @ToString.Exclude
+    @Builder.Default
     private List<Role> roleList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
@@ -36,5 +37,9 @@ public class Member extends BaseTimeEntity {
     @OrderBy("id desc") //댓글 정렬
     @ToString.Exclude
     private List<Comment> commentList = new ArrayList<>();
+
+    public void addRole(Role role) {
+        roleList.add(role);
+    }
 
 }
